@@ -29,11 +29,13 @@ class PostController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        return Post::create([
-            'user_id' => 1,
-            'title' => $request->title,
-            'body' => $request->body,
-        ]);
+        return Post::create(
+            [
+                'user_id' => 1,
+                'title' => $request->title,
+                'body' => $request->body,
+            ]
+        );
     }
 
     /**
@@ -41,7 +43,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return $post;
+        return $post->load('user:id,name');
     }
 
     /**
